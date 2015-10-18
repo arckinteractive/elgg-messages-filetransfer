@@ -1,0 +1,8 @@
+== Version History ==
+
+x.x:
+
+2.0.0 ():
+ - upgrade for Elgg 1.9+
+ - no overriding entire message form
+ - use elgg_tokeninput for selecting files (scalability)
