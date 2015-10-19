@@ -1,0 +1,20 @@
+{
+    "name": "arckinteractive/messages_filetransfer",
+    "type": "elgg-plugin",
+    "description": "This plugin lets a user transfer a copy of selected files along with an internal message",
+    "homepage": "https://github.com/arckinteractive/elgg-messages-filetransfer",
+    "keywords": ["elgg", "plugin", "messages", "files", "messages file transfer", "arck"],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Matt Beckett"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/arckinteractive/elgg-messages-filetransfer/issues"
+    },
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": ">=1.0.8"
+    }
+}

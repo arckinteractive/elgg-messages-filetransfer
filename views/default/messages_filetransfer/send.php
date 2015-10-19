@@ -14,6 +14,11 @@ namespace Arck\MessagesFileTransfer;
 		'query' => array('owner' => elgg_get_page_owner_guid()),
 		'callback' => __NAMESPACE__ . '\\file_search'
 	));
+	
+	echo elgg_view('output/longtext', array(
+		'value' => elgg_echo('messages_filetransfer:sendfile:help'),
+		'class' => 'elgg-text-help'
+	))
   ?>
   
 </div>
