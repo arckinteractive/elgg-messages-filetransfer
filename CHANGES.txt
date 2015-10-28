@@ -2,6 +2,9 @@
 
 x.x:
 
+2.0.1 (10/27/2015):
+ - fixes potential wsod
+
 2.0.0 (10/19/2015):
  - upgrade for Elgg 1.9+
  - no overriding entire message form

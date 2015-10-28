@@ -42,6 +42,11 @@ function file_transfer($hook, $type, $return, $params) {
 		$newfiles = array();
 		foreach ($files as $guid) {
 			$file = get_entity($guid);
+			
+			if (!$file instanceof \ElggFile) {
+				continue;
+			}
+			
 			$filestorename = elgg_strtolower(time() . $file->originalfilename);
 
 			$newfile = new \FilePluginFile();
