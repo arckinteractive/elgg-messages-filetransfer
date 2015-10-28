@@ -2,6 +2,9 @@
 
 x.x:
 
+2.0.2 (10/27/2015):
+ - only show attachment label if attachments are real
+
 2.0.1 (10/27/2015):
  - fixes potential wsod
 

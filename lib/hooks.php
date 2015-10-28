@@ -14,7 +14,7 @@ function file_transfer($hook, $type, $return, $params) {
 	if ($type != 'messages/send') {
 		return $return;
 	}
-	
+
 	$subject = strip_tags(get_input('subject'));
 	$body = get_input('body');
 	$recipient = get_user_by_username(get_input('recipient_username'));
@@ -32,6 +32,7 @@ function file_transfer($hook, $type, $return, $params) {
 	}
 
 	if (!$error && is_array($files) && count($files) > 0) {
+		$attachments = 0;
 
 		// need to overwrite permissions temporarily to create content in another persons id
 		$context = elgg_get_context();
@@ -42,11 +43,11 @@ function file_transfer($hook, $type, $return, $params) {
 		$newfiles = array();
 		foreach ($files as $guid) {
 			$file = get_entity($guid);
-			
+
 			if (!$file instanceof \ElggFile) {
 				continue;
 			}
-			
+
 			$filestorename = elgg_strtolower(time() . $file->originalfilename);
 
 			$newfile = new \FilePluginFile();
@@ -113,6 +114,7 @@ function file_transfer($hook, $type, $return, $params) {
 			}
 
 			$newfiles[] = $newfile;
+			$attachments++;
 		}
 
 		if ($error) {
@@ -127,15 +129,18 @@ function file_transfer($hook, $type, $return, $params) {
 		}
 
 		// everything has gone according to plan
-		$body .= '<br><br>';
-		$body .= elgg_echo('messages_filetransfer:attachments') . ':<br>';
-		$body .= '<ol>';
-		foreach ($newfiles as $newfile) {
-			$body .= '<li><a href="' . $newfile->getURL() . '">' . $newfile->title . '</a></li>';
-		}
-		$body .= "</ol>";
+		if ($attachments) {
+			$body .= PHP_EOL;
+			$body .= '<br><br>';
+			$body .= elgg_echo('messages_filetransfer:attachments') . ':<br>';
+			$body .= '<ol>';
+			foreach ($newfiles as $newfile) {
+				$body .= '<li><a href="' . $newfile->getURL() . '">' . $newfile->title . '</a></li>';
+			}
+			$body .= "</ol>";
 
-		set_input('body', $body);
+			set_input('body', $body);
+		}
 
 		// restore permissions
 		elgg_set_context($context);
@@ -158,6 +163,6 @@ function permissions_check($hook, $type, $return, $params) {
 	if (elgg_get_context() == 'messages_filetransfer_permissions') {
 		return true;
 	}
-	
+
 	return $return;
 }

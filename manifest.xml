@@ -3,7 +3,7 @@
     <name>Messages File Transfer</name>
     <author>Matt Beckett</author>
     <id>messages_filetransfer</id>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <description>This plugin lets a user transfer a copy of selected files along with an internal message</description>
     <copyright>(C) Arck Interactive, LLC 2012</copyright>
     <website>http://www.arckinteractive.com/</website>
